@@ -26,14 +26,32 @@ class Logic{
     if (this.numOfVultureCards == numOfPlayers - 1) { endTurn(); }
   }
 
+
+  function getWinner() {
+    var sortedCards = [...this.vultureCards].sort((a,b)=>{
+      return b-a;
+    });
+    var i = j = 0;
+    while(j<=sortedCards.length){
+      i=j; j++;
+      if (sortedCards[i]!=sortedCards[j]) {break;}
+      while (sortedCards[i]==sortedCards[j]){ j++; }
+    }
+    return this.vultureCards.indexOf(sortedCards[i]);
+    }
+
+  function endGame(){
+    var winner = this.players.sort((a,b)=> {return b-a})[0];
+  }
+
   function endTurn(){
     var winner = getWinner();
-    if (winner != null){
+    if (winner != -1){
       this.players[winner].points += preyCard;
     }
     this.vultureCards = [];
     this.preyCard = this.preyCards.pop();
     if (this.preyCard==null){ endGame(); }
   }
-  
+
 }
