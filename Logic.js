@@ -1,33 +1,36 @@
-class Logic{
+var EventEmitter = require('./EventEmitter.js');
+
+class Logic {
   constructor(numOfPlayers){
+    this.em = EventEmitter();
     this.vultureCards = [];
     this.preyCards = [1,2,3,4,5,6,7,8,9,10,-1,-2,-3,-4,-5];
-    shuffle(preyCards);
+    this.shuffle(this.preyCards);
     this.preyCard = this.preyCards.pop();
     this.players = [];
     this.numOfVultureCards = 0;
     for(var i=0; i<numOfPlayers; i++){
-      players[i] = { 'points':0 , 'cards':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]};
+      this.players[i] = { 'points':0 , 'cards':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]};
     }
   }
 
-  function shuffle(array) {
+  shuffle(array) {
     array.sort(() => Math.random() - 0.5);
   }
 
-  function playCard(playerIndex, cardValue){
+  playCard(playerIndex, cardValue){
+    this.em.trigger('playcard');
     if (playerIndex >= this.players.length){ return {'error': 'invalid player index'}; }
-    if (!(players[playerIndex].cards[cardValue - 1] == cardValue)){ return {'error': 'invalid card value'}; }
-    if (vultureCards[playerIndex] != null){ return {'error': 'the player already placed a card'}; }
+    if (!(this.players[playerIndex].cards[cardValue - 1] == cardValue)){ return {'error': 'invalid card value'}; }
+    if (this.vultureCards[playerIndex] != null){ return {'error': 'the player already placed a card'}; }
 
     this.players[playerIndex].cards[cardValue - 1] = null;
     this.vultureCards[playerIndex] = cardValue;
     this.numOfVultureCards++;
-    if (this.numOfVultureCards == numOfPlayers - 1) { endTurn(); }
+    if (this.numOfVultureCards == this.numOfPlayers - 1) { endTurn(); }
   }
 
-
-  function getWinner() {
+  getWinner() {
     var sortedCards = [...this.vultureCards].sort((a,b)=>{
       return b-a;
     });
@@ -40,11 +43,11 @@ class Logic{
     return this.vultureCards.indexOf(sortedCards[i]);
     }
 
-  function endGame(){
+  endGame(){
     var winner = this.players.sort((a,b)=> {return b-a})[0];
   }
 
-  function endTurn(){
+  endTurn(){
     var winner = getWinner();
     if (winner != -1){
       this.players[winner].points += preyCard;
@@ -55,3 +58,5 @@ class Logic{
   }
 
 }
+
+module.exports = Logic;
