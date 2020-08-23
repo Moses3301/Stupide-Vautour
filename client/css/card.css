@@ -1,0 +1,19 @@
+
+.card {
+  display: inline-block;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 6%;
+  width: 115px;
+  height: 160px;
+  background-color: #ffe;
+  margin: 0px 0px 5px 5px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card .value {
+  text-align: center;
+}
