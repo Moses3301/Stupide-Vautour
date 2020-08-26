@@ -19,7 +19,7 @@ class Logic {
   }
 
   playCard(playerIndex, cardValue){
-    this.em.trigger('playcard');
+    this.em.trigger('playcard', cardValue);
     if (playerIndex >= this.players.length){ return {'error': 'invalid player index'}; }
     if (!(this.players[playerIndex].cards[cardValue - 1] == cardValue)){ return {'error': 'invalid card value'}; }
     if (this.vultureCards[playerIndex] != null){ return {'error': 'the player already placed a card'}; }

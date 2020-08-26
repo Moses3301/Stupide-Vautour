@@ -6,9 +6,9 @@ function EventEmitter() {
     eventRegister[name].push(fn);
   }
 
-  const trigger = (name) => {
+  const trigger = (name, args) => {
     if (!eventRegister[name]) return false;
-    eventRegister[name].forEach((fn) => fn.call());
+    eventRegister[name].forEach((fn) => fn(args));
   }
 
   const off = (name, fn) => {
