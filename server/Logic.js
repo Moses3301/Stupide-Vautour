@@ -12,6 +12,7 @@ class Logic {
     for(var i=0; i<numOfPlayers; i++){
       this.players[i] = { 'points':0 , 'cards':[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]};
     }
+    this.em.trigger('game-start');
   }
 
   shuffle(array) {
@@ -19,7 +20,6 @@ class Logic {
   }
 
   playCard(playerIndex, cardValue){
-    this.em.trigger('playcard', cardValue);
     if (playerIndex >= this.players.length){ return {'error': 'invalid player index'}; }
     if (!(this.players[playerIndex].cards[cardValue - 1] == cardValue)){ return {'error': 'invalid card value'}; }
     if (this.vultureCards[playerIndex] != null){ return {'error': 'the player already placed a card'}; }
@@ -27,6 +27,7 @@ class Logic {
     this.players[playerIndex].cards[cardValue - 1] = null;
     this.vultureCards[playerIndex] = cardValue;
     this.numOfVultureCards++;
+    this.em.trigger('card-played',{playerIndex , cardValue});
     if (this.numOfVultureCards == this.numOfPlayers - 1) { endTurn(); }
   }
 
@@ -45,6 +46,7 @@ class Logic {
 
   endGame(){
     var winner = this.players.sort((a,b)=> {return b-a})[0];
+    this.em.trigger('end-game', winner');
   }
 
   endTurn(){
@@ -52,8 +54,10 @@ class Logic {
     if (winner != -1){
       this.players[winner].points += preyCard;
     }
+    this.em.trigger('end-turn',winner);
     this.vultureCards = [];
     this.preyCard = this.preyCards.pop();
+    this.em.trigger('prey-card-changed',preyCard);
     if (this.preyCard==null){ endGame(); }
   }
 
