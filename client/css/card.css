@@ -6,6 +6,7 @@
 
 body{
   font-family: Asap, sans-serif;
+  background-color: #457b9d;
 }
 
 .row:after {
@@ -33,6 +34,8 @@ body{
 
 .card-container{
   padding-top: 10px;
+  float: left;
+  display: flex;
 }
 
 .card {
@@ -44,6 +47,9 @@ body{
   padding: 5px;
   width:80px;
   height:105px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .card:hover {
@@ -52,15 +58,24 @@ body{
 
 
 .vulture-card{
-  background-color: #2527E;
-  text-align: center;
+  background-color: #f1faee;
 }
 
-.vulture-card > .value, .image{
-  font-size: 2em;
-  font-weight: bold;
+.prey-container{
+  display: flex;
 }
 
 .prey-card{
-  background-color: red;
+  background-color: #1d3557;
+  border: 5px solid #f1faee;
+  color: #f1faee;
+}
+
+.vulture-card-back{
+  background-color: #a8dadc;
+}
+
+.vulture-card-back > .image{
+  margin-top:0.3em;
+  font-size: 130%;
 }
