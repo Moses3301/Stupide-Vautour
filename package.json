@@ -1,0 +1,20 @@
+{
+  "name": "stupide-vautour",
+  "version": "1.0.0",
+  "description": "A simple card game",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moses3301/Stupide-Vautour.git"
+  },
+  "author": "Moshe Haina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moses3301/Stupide-Vautour/issues"
+  },
+  "homepage": "https://github.com/Moses3301/Stupide-Vautour#readme",
+  "dependencies": {}
+}
