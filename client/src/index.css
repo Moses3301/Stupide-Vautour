@@ -35,7 +35,7 @@ body{
   display: grid;
 }
 
-.card-container{
+.card-container .players-info{
   padding-top: 10px;
   float: left;
   display: flex;
@@ -110,6 +110,6 @@ body{
   margin: 0;
 }
 
-.card-spot-full{
+.spot-full{
   background-color: #A8DADC;
 }

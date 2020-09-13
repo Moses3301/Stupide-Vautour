@@ -16,5 +16,8 @@
     "url": "https://github.com/Moses3301/Stupide-Vautour/issues"
   },
   "homepage": "https://github.com/Moses3301/Stupide-Vautour#readme",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
 }

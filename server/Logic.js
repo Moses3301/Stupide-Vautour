@@ -46,7 +46,7 @@ class Logic {
 
   endGame(){
     var winner = this.players.sort((a,b)=> {return b-a})[0];
-    this.em.trigger('end-game', winner');
+    this.em.trigger('end-game', winner);
   }
 
   endTurn(){

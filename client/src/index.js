@@ -5,9 +5,9 @@ import './index.css';
 class Card extends React.Component{
   render() {
     return (
-    <div class="card vulture-card" onClick= {()=>{console.log(this.key)}}>
-      <div class="value">{this.props.value}</div>
-      <div class="image">🦅</div>
+    <div className="card vulture-card" onClick= {()=>{console.log(this.props.value)}}>
+      <div className="value">{this.props.value}</div>
+      <div className="image">🦅</div>
     </div>
   );
   }
@@ -21,10 +21,10 @@ class Player extends React.Component {
 
   render() {
     return (
-      <div class="box">
-        <h1 class='name'>{this.props.player.name}</h1>
-        <div class="card-spot card {this.state.isPlayed ? .vulture-card-back : .card-spot-full }"></div>
-        <h2 class='score'>Score: {this.state.score}</h2>
+      <div className="box">
+        <h1 className='name'>{this.props.player.name}</h1>
+        <div className={(this.state.isPlayed ? 'spot-full' : 'spot-empty') + ' card' }></div>
+        <h2 className='score'>Score: {this.state.score}</h2>
       </div>
   );
   }
@@ -33,9 +33,9 @@ class Player extends React.Component {
 class PreyCard extends React.Component{
   render() {
     return (
-      <div class="card prey-card">
-        <div class="value">{this.props.value}</div>
-        <div class="image">{this.props.value <= 0 ? '💀' : '🐁'}</div>
+      <div className="card prey-card">
+        <div className="value">{this.props.value}</div>
+        <div className="image">{this.props.value <= 0 ? '💀' : '🐁'}</div>
       </div>
   );
   }
@@ -56,26 +56,25 @@ class Board extends React.Component {
 
   render() {
     return (
-      <div class="table-container">
-        <div class="card-container">
+      <div className="table-container">
+        <div className="card-container">
           {this.listCards}
         </div>
 
-        <div class="prey-container ">
+        <div className="prey-container">
         <PreyCard value={this.state.preycard}></PreyCard>
         </div>
 
-
-        <div class="players-info">
+        <div className="players-info">
+          {this.listPlayers}
         </div>
-        {this.listPlayers}
         </div>
     );
   }
 }
 
 var cards = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
-const praycard = -2;
+const praycard = 5;
 var players = [{name: "momo",score:12,isPlayed:false},{name: "gogo",score:5,isPlayed:true}];
 
 ReactDOM.render(
