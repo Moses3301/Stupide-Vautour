@@ -1,45 +1,31 @@
-var Logic = require('./Logic.js');
-var app = require('express')();
-var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+const path = require("path");
+const http = require("http");
+const express = require("express");
+const app = express();
+const APP_PATH = path.resolve(__dirname, '../', 'client/build');
 
-var numOfPlayers = 0;
+app.use('/', express.static(APP_PATH));
+app.get('/', (req, res) => res.sendFile(`${APP_PATH}/index.html`));
+app.get('/hello', (req, res) => res.send(path.resolve(__dirname, '../', 'client/public/welcome.html')));
 
-app.get('/', (req, res) => {
-  res.send('./client/');
+// error handlers
+app.use((error, req, res, next) => {
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statusCode);
+  res.json({
+    message: error.message,
+    stack: process.env.NODE_ENV === 'production' ? '⛔' : error.stack
+  })
 });
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
+//Start server
+const port = process.env.PORT || 1337;
+
+const server = app.listen(port , () => {
+  console.log(`listening at port ${port}`);
 });
 
-io.on('connection', (socket) => {
-  numOfPlayers++;
-  console.log('a user #'+numOfPlayers+' connected');
-});
+//##################################################################################
 
-/*
-action: action_type,
-data: data
-*/
-
-
-logic.em.on('game-start' , ()=>{
-  //create jason and send to client
-});
-
-logic.em.on('card-played' , (cardPlayed)=>{
-  //create jason and send to client
-});
-
-logic.em.on('end-turn' , (winner)=>{
-  //create jason and send to client
-});
-
-logic.em.on('prey-card-changed' , (preyCard)=>{
-  //create jason and send to client
-});
-
-logic.em.on('end-game' , (winner)=>{
-  //create jason and send to client
-});
+const io = require('socket.io')(server);
+const socketEvents = require('./socket')(io);
