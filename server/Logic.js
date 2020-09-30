@@ -1,7 +1,10 @@
 var EventEmitter = require('./EventEmitter.js');
 
 class Logic {
-  constructor(numOfPlayers){
+  constructor(){
+  }
+
+  startGame(numOfPlayers){
     this.em = EventEmitter();
     this.vultureCards = [];
     this.preyCards = [1,2,3,4,5,6,7,8,9,10,-1,-2,-3,-4,-5];
@@ -36,11 +39,15 @@ class Logic {
     });
     var i = 0;
     var j = 0;
-    while(j<=sortedCards.length){
+    while(j<sortedCards.length){
       i=j; j++;
+      //the i,j elemets differnt
       if (sortedCards[i]!=sortedCards[j]) {break;}
+      //skip blocks of the same elemet
       while (sortedCards[i]==sortedCards[j]){ j++; }
     }
+    //all the elemets are identical
+    if (j==sortedCards.length) { return -1; }
     return this.vultureCards.indexOf(sortedCards[i]);
     }
 
@@ -48,7 +55,7 @@ class Logic {
     var winner = this.players.sort((a,b)=> {return b-a})[0];
     this.em.trigger('end-game', winner);
   }
-
+0.
   endTurn(){
     var winner = this.getWinner();
     if (winner != -1){

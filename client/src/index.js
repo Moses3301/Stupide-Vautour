@@ -104,6 +104,14 @@ class Board extends React.Component {
         this.setState((state)=> {return {players: newPlayers}});
       },1000)
     }
+    socket.on('start-game',(data)=> {
+      this.setState(state => (
+        {
+          cards: data.cards,
+          players: data.players.map(player =>{name: player.name, score: 0, isPlayed: false} ),
+          preycard: data.preycard
+        }));
+    });
   );
  }
 
