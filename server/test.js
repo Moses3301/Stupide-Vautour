@@ -6,7 +6,7 @@ const APP_PATH = path.resolve(__dirname, '../', 'client/build');
 
 app.use('/', express.static(APP_PATH));
 app.get('/', (req, res) => res.sendFile(`${APP_PATH}/index.html`));
-app.get('/hello', (req, res) => res.send(path.resolve(__dirname, '../', 'client/public/welcome.html')));
+app.get('/hello', (req, res) => res.sendFile(`${APP_PATH}/index0.html`));
 
 // error handlers
 app.use((error, req, res, next) => {
