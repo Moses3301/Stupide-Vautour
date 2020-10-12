@@ -1,0 +1,82 @@
+.table-container{
+  display: grid;
+}
+
+.card-container .players-info{
+  padding-top: 10px;
+  float: left;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  border: 5px solid black;
+  border-radius: 6%;
+  margin: 0px 0px 5px 5px;
+  padding: 5px;
+  width:80px;
+  height:105px;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.vulture-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.vulture-card{
+  background-color: #f1faee;
+}
+
+.prey-container{
+  display: flex;
+}
+
+.prey-card{
+  background-color: #1d3557;
+  border: 5px solid #f1faee;
+  color: #f1faee;
+}
+
+.vulture-card-back{
+  background-color: #a8dadc;
+}
+
+.vulture-card-back > .image{
+  margin-top:0.3em;
+  font-size: 130%;
+}
+
+.players-info{
+  float: left;
+  display: flex;
+}
+
+.players-info > .box{
+  padding: 10px;
+  margin: 8px;
+  text-align: center;
+}
+
+.players-info > .box > .name{
+  margin-bottom: 0.2em;
+  color: #F1FAEE;
+}
+
+.players-info > .box > .score{
+  margin: 0;
+  color: #F1FAEE;
+}
+
+.player-info > .box > .card-spot{
+  margin: 0;
+}
+
+.spot-full{
+  background-color: #A8DADC;
+}

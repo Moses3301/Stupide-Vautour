@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import SocketSingleton from './client-socket.js'
+import SocketSingleton from './client-socket.js';
+import './board.css';
 var socket = SocketSingleton.getInstance();
 
 class Card extends React.Component{
@@ -62,6 +63,7 @@ class Board extends React.Component {
     super(props);
     this.state = { cards:[], players:[], preycard: null};
     this.handleChange = this.handleChange.bind(this);
+    socket.on('start',()=>{})
     socket.on('cards-changed', (data)=> {
       console.log("cards-changed: " + data);
       this.setState((state)=> {return {cards: data};});
